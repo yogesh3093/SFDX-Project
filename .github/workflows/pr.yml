@@ -5,8 +5,10 @@ name: CI
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
+  push:
+     branches: ["dev-brach"]
   pull_request:
-    branches: [ "dev-brach" ]
+     branches: [ "dev-brach" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,7 +24,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
+      
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
@@ -32,3 +34,5 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          echo ${{secrets.USERNAME}}
+          echo ${{secrets.CONSUMER_KEY}}
